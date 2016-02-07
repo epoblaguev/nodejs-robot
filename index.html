@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Autonomous Robot</title>
+	<!-- JavaScript -->
+	<script src="/js/jquery.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/robot.js"></script>
+	<!-- Local Style -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<!--<link href="https://bootswatch.com/simplex/bootstrap.min.css" rel="stylesheet">-->
+
+	<style type="text/css">
+	#stream {
+		height: 550px;
+		margin: 0px auto;
+		display: block;
+	}
+	</style>
+</head>
+
+<body class="container" onload="tryConnectingGamepad()">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-center">Autonomous Robot
+				<small>NodeJS | Arduino | Raspberry PI</small>
+			</h1>
+			<hr>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="panel panel-info">
+				<div class="panel-heading clearfix">
+					<h2 class="panel-title" style="float:left; font-size:27px">Camera Controls</h2>
+					<span style="float:right">
+						<button type="button" id="startCamera" class="btn btn-info btn-sm"  onclick="startStream()"><span class="glyphicon glyphicon-camera" ></span> Start Camera</button>
+						<button type="button" id="stopCamera" class="btn btn-info btn-sm"  onclick="stopStream()" style="display:none"><span class="glyphicon glyphicon-camera" ></span> Stop Camera</button>
+						<button type="button" id="zoomIn" class="btn btn-info btn-sm"  onclick="zoomImage(50)"><span class="glyphicon glyphicon-zoom-in"></span></button>
+						<button type="button" id="zoomOut" class="btn btn-info btn-sm"  onclick="zoomImage(-50)"><span class="glyphicon glyphicon-zoom-out"></span></button>
+					</span>
+				</div>
+				<div class="panel-body">
+					<img src="" id="stream">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="input-group">
+				<input type="text" class="form-control" name="Say" id="inputSay" value="Exterminate"/>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" class="btn btn-info"  onclick="sendMessage()">Say!</button>
+					<div id="recievedMessage"></div>
+				</span>
+			</div>
+
+			<div style="margin-top:10px">
+
+				<span class="btn-group-vertical" role="group" >
+					<span id="TrackL_Forward" class="btn btn-lg label-default"><span class="glyphicon glyphicon-triangle-top" ></span></span>
+					<span id="TrackL_Neutral" class="btn btn-lg label-success"><span class="glyphicon glyphicon-menu-hamburger" ></span></span>
+					<span id="TrackL_Backward" class="btn btn-lg label-default"><span class="glyphicon glyphicon-triangle-bottom" ></span></span>
+
+				</span>
+				<span class="btn-group-vertical" role="group" >
+					<span id="TrackR_Forward" class="btn btn-lg label-default"><span class="glyphicon glyphicon-triangle-top" ></span></span>
+					<span id="TrackR_Neutral" class="btn btn-lg label-success"><span class="glyphicon glyphicon-menu-hamburger" ></span></span>
+					<span id="TrackR_Backward" class="btn btn-lg label-default"><span class="glyphicon glyphicon-triangle-bottom" ></span></span>
+
+				</span>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
