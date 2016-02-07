@@ -18,6 +18,7 @@ window.addEventListener("gamepaddisconnected", function(e) {
 	alert("Gamepad disconnected. Please connect gamepad and press a button.");
 });
 
+// Display message returned from NodeJS.
 socket.on("returnMessage",function(message){
 	$("#recievedMessage").html(message);
 });
@@ -57,6 +58,7 @@ function zoomImage(zoom){
 // Send message to NodeJS that will (maybe) be said via text-to-speech software.
 function sendMessage(){
 	var message = $("#inputSay").val();
+	console.log(message);
 	socket.emit("say-massage", message);
 }
 

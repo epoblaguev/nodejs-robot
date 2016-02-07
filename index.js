@@ -17,6 +17,7 @@ var sockets = {};
 var five = require("johnny-five");
 var board = new five.Board();
 
+// Runs when Arduino connects.
 board.on("ready", function() {
   // Replace this with your arduino and motor setup.
   var configs = five.Motor.SHIELD_CONFIGS.ADAFRUIT_V1;
